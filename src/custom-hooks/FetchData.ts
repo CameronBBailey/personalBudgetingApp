@@ -8,10 +8,6 @@ import { useAuth } from 'reactfire'
 
 
 
-
-
-
-
 export const useGetDataInvestments = () => {
     const [investmentData, setData] = useState<any>([]);
 
@@ -20,7 +16,7 @@ export const useGetDataInvestments = () => {
         setData(result)
     }
 
-    // Introducing the useEffect Hook to add our data to react State
+    
     useEffect( () => {
         handleDataFetch();
     }, [])
@@ -37,7 +33,7 @@ export const useGetDataAlerts = () => {
         setData(result)
     }
 
-    // Introducing the useEffect Hook to add our data to react State
+    
     useEffect( () => {
         handleDataFetch();
     }, [])
@@ -54,7 +50,7 @@ export const useGetDataBalance = () => {
         setData(result)
     }
 
-    // Introducing the useEffect Hook to add our data to react State
+    
     useEffect( () => {
         handleDataFetch();
     }, [])
@@ -71,7 +67,7 @@ export const useGetDataExpenses = () => {
         setData(result)
     }
 
-    // Introducing the useEffect Hook to add our data to react State
+    
     useEffect( () => {
         handleDataFetch();
     }, [])

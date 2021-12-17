@@ -19,16 +19,17 @@ interface ExpensesState {
 
 
 
-export const ExpensesForm = () => {
+export const ExpensesForm =  () => {
 
     const { register, handleSubmit } = useForm<ExpensesState>();
     const auth = useAuth()
     const [currentUser, setCurrentUser] = useState<any>()
-    useEffect(() => {
-        setCurrentUser(auth.currentUser)
-    },[currentUser])
-    console.log(auth)
+    // useEffect(() => {
+    //     setCurrentUser(auth.currentUser)
+    // },[currentUser])
+    auth.onAuthStateChanged(() =>{setCurrentUser(auth.currentUser)})
     if (currentUser == null) {
+        console.log(auth)
         return <div>loading</div>
     } else {
 

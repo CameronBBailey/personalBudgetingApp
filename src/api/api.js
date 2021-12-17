@@ -28,8 +28,8 @@ app.get('/expenses', (req, res)=>{
     client.end;
 })
 
-app.get('/expenses/:id', (req, res)=>{
-    client.query(`Select * from expenses where id=${req.params.id}`, (err, result)=>{
+app.get('/expenses/:token', (req, res)=>{
+    client.query(`Select * from expenses where token=${req.params.token}`, (err, result)=>{
         if(!err){
             res.send(result.rows);
         }

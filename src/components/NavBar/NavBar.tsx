@@ -15,6 +15,7 @@ const useStyles = makeStyles({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
+        backgroundColor: 'limegreen',
     },
     
     
@@ -67,7 +68,10 @@ export const NavBar = () => {
                             <Link to="/alerts" className={classes.nav_a}>Alerts</Link>
                         </li>
                         <li>
-                            <Link to="/signin" className={classes.nav_a}>SignIn/Out</Link>
+                            <Link to="/signin" className={classes.nav_a}>SignIn/SignOut</Link>
+                        </li>
+                        <li>
+                            <Link to="/Budget" className={classes.nav_a}>Budget</Link>
                         </li>
                     </ul>
                 </div>
