@@ -4,7 +4,8 @@ import Button from '@material-ui/core/Button';
 import { green } from '@material-ui/core/colors';
 
 import { Link } from 'react-router-dom';
-
+import { AuthCheck } from 'reactfire';
+import { Suspense } from 'react';
 
 const useStyles = makeStyles({
     root:{
@@ -64,6 +65,7 @@ export const Home = ( props:Props) => {
 
     return (
         <div className={classes.root}>
+            
             <main className={classes.main}>
                 <div className={classes.main_text}>
                     <h1>{ props.title }</h1>

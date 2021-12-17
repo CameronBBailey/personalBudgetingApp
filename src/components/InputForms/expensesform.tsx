@@ -5,7 +5,7 @@ import { Input } from '../sharedComponents/Input';
 import { Button } from '@material-ui/core';
 
 import { expenses_server_calls } from '../../api';
-
+import { useAuth } from 'reactfire'
 
 
 interface ExpensesState {
@@ -19,7 +19,14 @@ interface ExpensesState {
 
 export const ExpensesForm = () => {
 
-   
+    const auth = useAuth()
+    console.log(auth)
+    
+
+    
+    
+    
+    
     const { register, handleSubmit } = useForm<ExpensesState>();
 
     const onSubmit: SubmitHandler<ExpensesState> = (data) => {
@@ -32,6 +39,7 @@ export const ExpensesForm = () => {
     }
 
     return (
+        
         <div>
             <form onSubmit = {handleSubmit(onSubmit)}>
                 

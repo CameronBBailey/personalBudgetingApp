@@ -14,7 +14,7 @@ import { firebaseConfig } from './firebaseConfig'
 
 ReactDOM.render(
   <React.StrictMode>
-    
+    <FirebaseAppProvider firebaseConfig={firebaseConfig}>
     <Router>
       <NavBar></NavBar>
       <Switch>
@@ -49,7 +49,7 @@ ReactDOM.render(
 
       </Switch>
     </Router>
-   
+    </FirebaseAppProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
