@@ -1,35 +1,47 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Input } from '../sharedComponents/Input';
 import { Button } from '@material-ui/core';
 
 import { expenses_server_calls } from '../../api';
-import { useAuth } from 'reactfire'
+import { useAuth, useUser } from 'reactfire';
+import './expensesForm.css';
 
 
 interface ExpensesState {
     id: number,
 	name: string,
 	amount: number,
-	category: string
+	category: string,
+    token: string
 }
 
 
 
 export const ExpensesForm = () => {
 
-    const auth = useAuth()
-    console.log(auth)
-    
-
-    
-    
-    
-    
     const { register, handleSubmit } = useForm<ExpensesState>();
+    const auth = useAuth()
+    const [currentUser, setCurrentUser] = useState<any>()
+    useEffect(() => {
+        setCurrentUser(auth.currentUser)
+    },[currentUser])
+    console.log(auth)
+    if (currentUser == null) {
+        return <div>loading</div>
+    } else {
+
+    const token = currentUser.uid 
+    console.log(token)
+    
+    
+    
+    
+    
 
     const onSubmit: SubmitHandler<ExpensesState> = (data) => {
+        console.log(data)
         expenses_server_calls.create(data)
     }
     
@@ -53,10 +65,13 @@ export const ExpensesForm = () => {
                     <Input {...register('amount')} name="amount" placeholder='Amount' />
                 </div>
                 <div>
-                    <label htmlFor="category"> Purchase Price</label>
+                    <label htmlFor="category"> Category</label>
                     <Input {...register('category')} name="category" placeholder='Category' />
                 </div>
-                
+                <div className='aziz-al-hacks'>
+                    <label htmlFor="token"> Category</label>
+                    <Input {...register('token')} name="token" value={token} />
+                </div>
                 <Button type='submit'>Submit</Button>
             </form>
             
@@ -65,4 +80,4 @@ export const ExpensesForm = () => {
         
         </div>
     )
-}
+}}

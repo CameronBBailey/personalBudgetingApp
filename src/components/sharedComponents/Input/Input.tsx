@@ -3,7 +3,8 @@ import { TextField } from '@material-ui/core';
 
 interface inputType{
     name: string;
-    placeholder: string;
+    placeholder?: string;
+    value?: string
 }
 
 export const Input = forwardRef((props:inputType, ref) => {

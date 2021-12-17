@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { investment_server_calls, alerts_server_calls, balance_server_calls, expenses_server_calls } from '../api';
 
+import { useAuth } from 'reactfire'
+
+
+
+
+
+
+
+
+
 
 export const useGetDataInvestments = () => {
     const [investmentData, setData] = useState<any>([]);

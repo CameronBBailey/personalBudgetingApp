@@ -1,6 +1,7 @@
 const client = require('./connection.js')
 const express = require('express');
 const app = express();
+
 const cors = require('cors');
 app.use(cors({
     origin: '*'
@@ -38,8 +39,8 @@ app.get('/expenses/:id', (req, res)=>{
 
 app.post('/expenses', (req, res)=> {
     const expense = req.body;
-    let insertQuery = `insert into expenses( name, amount, category) 
-                       values('${expense.name}', '${expense.amount}', '${expense.category}')`
+    let insertQuery = `insert into expenses( name, amount, category, token) 
+                       values('${expense.name}', '${expense.amount}', '${expense.category}', '${expense.token}')`
 
     client.query(insertQuery, (err, result)=>{
         if(!err){
