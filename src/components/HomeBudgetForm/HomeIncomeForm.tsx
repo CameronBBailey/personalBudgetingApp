@@ -19,6 +19,6 @@ export const HomeIncomeTable = () => {
     
     const classes = useStyles();
     return ( 
-        <div className={classes.text}>Monthly Income
+        <div className={classes.text}>Monthly Savings
             ${sum}</div>
     )}

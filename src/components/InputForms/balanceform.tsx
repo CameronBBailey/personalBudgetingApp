@@ -37,11 +37,11 @@ export const BalanceForm = () => {
                 
                 
                 <div>
-                    <label htmlFor="name">Balance change name</label>
+                    <label htmlFor="name">Savings</label>
                     <Input {...register('name')} name="name" placeholder='Name' />
                 </div>
                 <div>
-                    <label htmlFor="amount"> amount</label>
+                    <label htmlFor="amount"> Amount</label>
                     <Input {...register('amount')} name="amount" placeholder='Amount' />
                 </div>
                 <div>
@@ -49,7 +49,7 @@ export const BalanceForm = () => {
                     <Input {...register('category')} name="category" placeholder='Category' />
                 </div>
                 
-                <Button type='submit'>Submit</Button>
+                <Button variant='contained' color='primary' type='submit'>Submit</Button>
             </form>
             
             

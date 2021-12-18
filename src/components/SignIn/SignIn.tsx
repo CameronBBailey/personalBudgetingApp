@@ -20,13 +20,13 @@ const useStyles = makeStyles({
         marginTop: '2em',
         padding: '0',
         color: 'white',
-        height: '50px',
-        width: '240px',
+        height: '100%',
+        width: '100%',
         border: 'none',
         textAlign: 'center',
         boxShadow: 'rgb(0 0 0 / 25%) 0px 2px 4px 0px',
-        fontSize: '16px',
-        lineHeight: '48px',
+        fontSize: '48px',
+        lineHeight: '600px',
         display: 'block',
         borderRadius: '1px',
         fontFamily: 'Roboto, arial, sans-serif',
@@ -96,9 +96,9 @@ export const SignIn = withRouter( (props:SignInProps) => {
                 
                 
                 <AuthCheck fallback={
-                    <Button className={classes.googleButton} onClick={sign_in}>Sign In With Google</Button>
+                    <Button className={classes.googleButton} onClick={sign_in}>Sign In</Button>
                 }>
-                    <Button variant='contained' color='secondary' onClick={sign_out}>Sign Out</Button>
+                    <Button className={classes.googleButton} variant='contained' color='secondary' onClick={sign_out}>Sign Out</Button>
                 </AuthCheck>
                 <Snackbar message={'Success'} open={open} autoHideDuration={6000} onClose={handleSnackClose}>
                 <Alert onClose={handleSnackClose} severity="success">

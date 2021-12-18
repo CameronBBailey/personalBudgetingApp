@@ -73,7 +73,7 @@ export const ExpensesForm =  () => {
                     <label htmlFor="token"> Category</label>
                     <Input {...register('token')} name="token" value={token} />
                 </div>
-                <Button type='submit'>Submit</Button>
+                <Button variant='contained' type='submit' color='primary'>Submit</Button>
             </form>
             
             

@@ -14,7 +14,7 @@ const columns: GridColDef[] = [
     width: 150,
     editable: true,
   },
-  { field: 'amount', headerName: 'cost', width: 90 },
+  { field: 'amount', headerName: 'Cost', width: 90 },
   
   {
     field: 'category',
@@ -31,12 +31,7 @@ interface gridData{
     id?:string;
   }
 }
-const rows = [
-  { id: 1, amount: 1, investment: 'Amazon', ticker: 'AMZN', purchaseprice: 100, currentprice: 120 },
-  { id: 2, amount: 1, investment: 'Tesla', ticker: 'AMZN', purchaseprice: 100, currentprice: 80 },
-  { id: 3, amount: 100, investment: 'VTSAX', ticker: 'VTSAX', purchaseprice: 10, currentprice: 25900 },
-  
-]
+
 
 export const ExpenseTable = () => {
   let { expenseData, getData } = useGetDataExpenses()

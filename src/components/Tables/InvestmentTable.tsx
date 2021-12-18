@@ -25,14 +25,14 @@ const columns: GridColDef[] = [
     field: 'purchaseprice',
     headerName: 'Purchase Price',
     type: 'number',
-    width: 110,
+    width: 200,
     editable: true,
   },
   {
     field: 'currentprice',
     headerName: 'Current Price',
     type: 'number',
-    width: 110,
+    width: 200,
     editable: true,
   },
   {

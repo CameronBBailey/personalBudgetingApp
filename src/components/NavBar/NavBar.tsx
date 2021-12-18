@@ -29,8 +29,9 @@ const useStyles = makeStyles({
     },
     nav_a:{
         display: 'block',
-        padding: '1em',
-        color: 'black'
+        padding: '1.3em',
+        color: 'black',
+        fontWeight: 'bold',
     },
     
 })
@@ -59,7 +60,7 @@ export const NavBar = () => {
                             <Link to="/expenses" className={classes.nav_a}>Expenses</Link>
                         </li>
                         <li>
-                            <Link to='/balance'  className={classes.nav_a}>Balance</Link>
+                            <Link to='/balance'  className={classes.nav_a}>Savings</Link>
                         </li>
                         <li>
                             <Link to="/investments" className={classes.nav_a}>Investments</Link>

@@ -54,7 +54,7 @@ export const InvestmentForm = () => {
                     <Input {...register('purchaseprice')} name="purchaseprice" placeholder='Purchase Price' />
                 </div>
                 
-                <Button type='submit'>Submit</Button>
+                <Button variant='contained' color='primary' type='submit'>Submit</Button>
             </form>
             
             

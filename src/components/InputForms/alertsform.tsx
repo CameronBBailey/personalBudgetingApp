@@ -49,7 +49,7 @@ export const AlertsForm = () => {
                     <Input {...register('userid')} name="userid" placeholder='User ID' />
                 </div>
                 
-                <Button type='submit'>Submit</Button>
+                <Button variant='contained' color='primary' type='submit'>Submit</Button>
             </form>
             
             
