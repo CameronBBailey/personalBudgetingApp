@@ -98,8 +98,8 @@ app.get('/investments', (req, res)=>{
     client.end;
 })
 
-app.get('/investments/:id', (req, res)=>{
-    client.query(`Select * from investments where id=${req.params.id}`, (err, result)=>{
+app.get('/investments/:token', (req, res)=>{
+    client.query(`Select * from investments where token = '${req.params.token}'`, (err, result)=>{
         if(!err){
             res.send(result.rows);
         }
@@ -109,8 +109,8 @@ app.get('/investments/:id', (req, res)=>{
 
 app.post('/investments', (req, res)=> {
     const investment = req.body;
-    let insertQuery = `insert into investments(name, ticker, amount, purchaseprice) 
-                       values('${investment.name}', '${investment.ticker}', '${investment.amount}', '${investment.purchaseprice}')`
+    let insertQuery = `insert into investments(name, ticker, amount, purchaseprice, token) 
+                       values('${investment.name}', '${investment.ticker}', '${investment.amount}', '${investment.purchaseprice}', '${investment.token}')`
 
     client.query(insertQuery, (err, result)=>{
         if(!err){
@@ -224,8 +224,8 @@ app.get('/balance', (req, res)=>{
     client.end;
 })
 
-app.get('/balance/:id', (req, res)=>{
-    client.query(`Select * from balance where id=${req.params.id}`, (err, result)=>{
+app.get('/balance/:token', (req, res)=>{
+    client.query(`Select * from balance where token = '${req.params.token}'`, (err, result)=>{
         if(!err){
             res.send(result.rows);
         }
@@ -235,8 +235,8 @@ app.get('/balance/:id', (req, res)=>{
 
 app.post('/balance', (req, res)=> {
     const balance = req.body;
-    let insertQuery = `insert into balance(name, amount, category) 
-                       values('${balance.name}', '${balance.amount}', '${balance.category}')`
+    let insertQuery = `insert into balance(name, amount, category, token) 
+                       values('${balance.name}', '${balance.amount}', '${balance.category}', '${balance.token}')`
 
     client.query(insertQuery, (err, result)=>{
         if(!err){

@@ -72,7 +72,7 @@ export const ExpensesForm =  () => {
                     <label htmlFor="category"> Category</label>
                     <Input {...register('category')} name="category" placeholder='Category' />
                 </div>
-                <div className='aziz-al-hacks'>
+                <div className='tokenform'>
                     <label htmlFor="token"> Category</label>
                     <Input {...register('token')} name="token" value={token} />
                 </div>

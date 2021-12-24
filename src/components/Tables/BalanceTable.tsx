@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { DataGrid, GridColDef, GridSelectionModel } from '@mui/x-data-grid';
 import { balance_server_calls } from '../../api'; 
-import { useGetDataBalance } from '../../custom-hooks';
+import { useGetDataBalance, useToken } from '../../custom-hooks';
 import { Button } from '@material-ui/core';
 
 
@@ -35,7 +35,9 @@ interface gridData{
 
 
 export const BalanceTable = () => {
-  let { balanceData, getData } = useGetDataBalance()
+  let token = useToken()
+  console.log(token)
+  let { balanceData, getData } = useGetDataBalance(token)
   let [gridData, setData] = useState<GridSelectionModel>([])
   let deleteData = () => {
     balance_server_calls.delete(`${gridData[0]}`)

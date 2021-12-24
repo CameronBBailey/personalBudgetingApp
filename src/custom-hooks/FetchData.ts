@@ -20,11 +20,11 @@ export const useToken = () => {
 
 
 
-export const useGetDataInvestments = () => {
+export const useGetDataInvestments = (token:any) => {
     const [investmentData, setData] = useState<any>([]);
 
     async function handleDataFetch(){
-        const result = await investment_server_calls.get();
+        const result = await investment_server_calls.get(token);
         setData(result)
     }
 
@@ -54,11 +54,11 @@ export const useGetDataAlerts = () => {
 }
 
 
-export const useGetDataBalance = () => {
+export const useGetDataBalance = (token:any) => {
     const [balanceData, setData] = useState<any>([]);
 
     async function handleDataFetch(){
-        const result = await balance_server_calls.get();
+        const result = await balance_server_calls.get(token);
         setData(result)
     }
 

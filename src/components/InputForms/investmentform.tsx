@@ -3,8 +3,9 @@ import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Input } from '../sharedComponents/Input';
 import { Button } from '@material-ui/core';
-
+import { useToken } from '../../custom-hooks'
 import { investment_server_calls } from '../../api';
+import { useAuth, useUser } from 'reactfire';
 
 
 
@@ -13,7 +14,8 @@ interface InvestmentState {
 	name: string,
 	ticker: string,
 	amount: number,
-	purchaseprice: number
+	purchaseprice: number,
+    token: string,
 }
 
 
@@ -22,7 +24,8 @@ export const InvestmentForm = () => {
 
    
     const { register, handleSubmit } = useForm<InvestmentState>();
-
+    const auth = useAuth()
+    const {status, data:user} = useUser()
     const onSubmit: SubmitHandler<InvestmentState> = (data) => {
         investment_server_calls.create(data)
     }
@@ -31,7 +34,9 @@ export const InvestmentForm = () => {
         
         investment_server_calls.delete(deldata)
     }
-
+    if (status !== "loading" && user != null) {
+        const token = user.uid
+        console.log(token)
     return (
         <div>
             <form onSubmit = {handleSubmit(onSubmit)}>
@@ -53,6 +58,10 @@ export const InvestmentForm = () => {
                     <label htmlFor="purchaseprice"> Purchase Price</label>
                     <Input {...register('purchaseprice')} name="purchaseprice" placeholder='Purchase Price' />
                 </div>
+                <div className='tokenform'>
+                    <label htmlFor="token"> Category</label>
+                    <Input {...register('token')} name="token" value={token} />
+                </div>
                 
                 <Button variant='contained' color='primary' type='submit'>Submit</Button>
             </form>
@@ -63,3 +72,12 @@ export const InvestmentForm = () => {
         </div>
     )
 }
+else if (status != "loading" && user === null) {
+    return <h1>Please log in</h1>
+}
+
+else {
+    
+    return <h1>loading</h1>
+
+}}

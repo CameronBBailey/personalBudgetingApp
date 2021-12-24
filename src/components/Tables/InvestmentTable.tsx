@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { DataGrid, GridColDef, GridValueGetterParams, GridSelectionModel } from '@mui/x-data-grid';
 import { investment_server_calls } from '../../api'; 
-import { useGetDataInvestments } from '../../custom-hooks';
+import { useGetDataInvestments, useToken } from '../../custom-hooks';
 import { Button } from '@material-ui/core';
 
 
@@ -59,11 +59,11 @@ const rows = [
 ]
 
 export const InvestmentTable = () => {
-  let { investmentData, getData } = useGetDataInvestments()
+  let token = useToken()
+  let { investmentData, getData } = useGetDataInvestments(token)
   let [gridData, setData] = useState<GridSelectionModel>([])
   let deleteData = () => {
     investment_server_calls.delete(`${gridData[0]}`)
-    console.log(gridData)
     getData()
   }
   console.log(gridData)

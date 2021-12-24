@@ -1,5 +1,5 @@
 import React from 'react'
-import {  useGetDataBalance } from '../../custom-hooks'
+import {  useGetDataBalance, useToken } from '../../custom-hooks'
 import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({
@@ -10,7 +10,8 @@ const useStyles = makeStyles({
 })
 
 export const HomeIncomeTable = () => {
-    let { balanceData, getData } = useGetDataBalance();
+    let token = useToken()
+    let { balanceData, getData } = useGetDataBalance(token);
     let sum = 0
     balanceData.forEach((element: any) => sum += Number(element.amount));
     

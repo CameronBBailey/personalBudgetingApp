@@ -7,8 +7,8 @@
 
 /* Investment Calls */
 export const investment_server_calls = {
-    get: async () => {
-        const response = await fetch(`http://localhost:3300/investments`,{
+    get: async (token:any) => {
+        const response = await fetch(`http://localhost:3300/investments/${token}`,{
             method: 'GET',
             mode: 'cors',
             headers: {
@@ -132,8 +132,8 @@ export const expenses_server_calls = {
 
 /* Balance Calls */
 export const balance_server_calls = {
-    get: async () => {
-        const response = await fetch(`http://localhost:3300/balance`,{
+    get: async (token:any) => {
+        const response = await fetch(`http://localhost:3300/balance/${token}`,{
             method: 'GET',
             mode: 'cors',
             headers: {
