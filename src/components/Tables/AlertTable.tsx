@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { DataGrid, GridColDef, GridValueGetterParams, GridSelectionModel } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridSelectionModel } from '@mui/x-data-grid';
 import { alerts_server_calls } from '../../api'; 
 import { useGetDataAlerts } from '../../custom-hooks';
 import { Button } from '@material-ui/core';

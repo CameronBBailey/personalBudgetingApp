@@ -24,7 +24,7 @@ export const Expenses = () => {
         </div>
     )
 }
-else if (status != "loading" && user === null) {
+else if (status !== "loading" && user === null) {
     return <h1>Please log in</h1>
 }
 

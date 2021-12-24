@@ -1,8 +1,5 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
-import { green } from '@material-ui/core/colors';
-
 import { Link } from 'react-router-dom';
 import { AuthCheck } from 'reactfire'; // New Import
 import { Suspense } from 'react';

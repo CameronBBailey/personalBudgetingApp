@@ -2,9 +2,9 @@ import React, {useState} from 'react';
 // import { firebase } from 'firebase/app';
 import { useAuth, AuthCheck, useUser } from 'reactfire';
 import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-import { Container, Button, makeStyles, Typography, Snackbar,  } from '@material-ui/core';
-import { RouteComponentProps, withRouter } from "react-router-dom";
-import {Alert, AlertProps } from '@mui/material';
+import { Container, Button, makeStyles, Snackbar,  } from '@material-ui/core';
+import {  withRouter } from "react-router-dom";
+import {Alert } from '@mui/material';
 
 // Functional Component Created inside of this component
 // Will only be used to close snackbar

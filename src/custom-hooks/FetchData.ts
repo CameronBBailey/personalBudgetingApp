@@ -72,7 +72,6 @@ export const useGetDataBalance = () => {
 
 
 export const useGetDataExpenses = (token:any) => {
-    console.log(token)
     const [expenseData, setData] = useState<any>([]);
     async function handleDataFetch(){
         const result = await expenses_server_calls.get(token);

@@ -53,7 +53,6 @@ export const ExpensesForm =  () => {
     }
 
     if (status !== "loading" && user != null) {
-        console.log(user.uid)
         const token = user.uid
     return (
         

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { DataGrid, GridColDef, GridValueGetterParams, GridSelectionModel } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridSelectionModel } from '@mui/x-data-grid';
 import { expenses_server_calls } from '../../api'; 
-import { useGetDataExpenses, useGetDataInvestments, useToken } from '../../custom-hooks';
+import { useGetDataExpenses, useToken } from '../../custom-hooks';
 import { Button } from '@material-ui/core';
-import { useUser } from 'reactfire'
+
 
 
 
@@ -36,15 +36,12 @@ interface gridData{
 
 export const ExpenseTable = () => {
   let token = useToken()
-  console.log(token)
   let { expenseData, getData } = useGetDataExpenses(token)
   let [gridData, setData] = useState<GridSelectionModel>([])
   let deleteData = () => {
-    expenses_server_calls.delete(`${gridData[0]}`)
-    console.log(gridData)
+    expenses_server_calls.delete(`${gridData[0]}`) 
     getData()
   }
-  console.log(gridData)
 
     return (
         <div style={{ height: 400, width: '100%' }}>
