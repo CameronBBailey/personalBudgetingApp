@@ -24,17 +24,18 @@ export const ExpensesForm =  () => {
     const { register, handleSubmit } = useForm<ExpensesState>();
     const auth = useAuth()
     const [currentUser, setCurrentUser] = useState<any>()
+    const {status, data:user} = useUser()
     // useEffect(() => {
     //     setCurrentUser(auth.currentUser)
     // },[currentUser])
     auth.onAuthStateChanged(() =>{setCurrentUser(auth.currentUser)})
-    if (currentUser == null) {
-        console.log(auth)
-        return <div>loading</div>
-    } else {
+    // if (currentUser == null) {
+    //     console.log(auth)
+    //     return <div>loading</div>
+    // } else {
 
-    const token = currentUser.uid 
-    console.log(token)
+    // const token = currentUser.uid 
+    // console.log(token)
     
     
     
@@ -51,6 +52,9 @@ export const ExpensesForm =  () => {
         expenses_server_calls.delete(deldata)
     }
 
+    if (status !== "loading" && user != null) {
+        console.log(user.uid)
+        const token = user.uid
     return (
         
         <div>
@@ -81,4 +85,13 @@ export const ExpensesForm =  () => {
         
         </div>
     )
+}
+else if (status != "loading" && user === null) {
+    return <h1>Please log in</h1>
+}
+
+else {
+    
+    return <h1>loading</h1>
+
 }}

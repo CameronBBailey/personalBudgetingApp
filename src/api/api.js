@@ -34,7 +34,8 @@ app.get('/expenses', (req, res)=>{
 })
 
 app.get('/expenses/:token', (req, res)=>{
-    client.query(`Select * from expenses where token=${req.params.token}`, (err, result)=>{
+    console.log(req.params.token)
+    client.query(`Select * from expenses where token = '${req.params.token}'`, (err, result)=>{
         if(!err){
             res.send(result.rows);
         }

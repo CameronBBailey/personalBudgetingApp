@@ -4,6 +4,8 @@ import Button from '@material-ui/core/Button';
 import { green } from '@material-ui/core/colors';
 
 import { Link } from 'react-router-dom';
+import { AuthCheck } from 'reactfire'; // New Import
+import { Suspense } from 'react';
 
 
 const useStyles = makeStyles({
@@ -53,6 +55,12 @@ export const NavBar = () => {
                         <li>
                             <Link to='/' className={classes.nav_a}>Home</Link>
                         </li>
+                        <Suspense fallback={'loading...'}>
+                        <AuthCheck fallback={
+                            <li>
+                            <Link to="/signin" className={classes.nav_a}>SignIn/SignOut</Link>
+                        </li>
+                        }>
                         <li>
                             <Link to="/calendar" className={classes.nav_a}>Calendar</Link>
                         </li>
@@ -74,6 +82,8 @@ export const NavBar = () => {
                         <li>
                             <Link to="/Budget" className={classes.nav_a}>Budget</Link>
                         </li>
+                        </AuthCheck>
+                        </Suspense>
                     </ul>
                 </div>
             </nav>

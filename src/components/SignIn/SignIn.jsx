@@ -1,15 +1,14 @@
 import React, {useState} from 'react';
-import firebase from 'firebase/app';
-import { useAuth, AuthCheck } from 'reactfire';
-import 'firebase/auth';
-import { Input } from '../sharedComponents/Input';
+// import { firebase } from 'firebase/app';
+import { useAuth, AuthCheck, useUser } from 'reactfire';
+import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { Container, Button, makeStyles, Typography, Snackbar,  } from '@material-ui/core';
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import {Alert, AlertProps } from '@mui/material';
 
 // Functional Component Created inside of this component
 // Will only be used to close snackbar
-const MuiAlert = (props:AlertProps) => {
+const MuiAlert = (props) => {
     return <Alert elevation={6} variant='filled' {...props}/>
 }
 
@@ -52,16 +51,21 @@ const useStyles = makeStyles({
 
 })
 
-interface SignInProps{
-    history: RouteComponentProps["history"];
-    location: RouteComponentProps['location'];
-    match: RouteComponentProps['match'];
-  }
+// interface SignInProps{
+//     history: RouteComponentProps["history"];
+//     location: RouteComponentProps['location'];
+//     match: RouteComponentProps['match'];
+//   }
 
 
-export const SignIn = withRouter( (props:SignInProps) => {
-
+export const SignIn = withRouter( (props) => {
+    const provider = new GoogleAuthProvider();
+    const {userStatus, data: user } = useUser();
     const auth = useAuth();
+    // console.log(auth)
+    // const currentUser = auth.currentUser
+    // console.log(currentUser)
+    
     const classes = useStyles();
     const { history } = props
     const [open, setOpen] = useState(false);
@@ -70,7 +74,7 @@ export const SignIn = withRouter( (props:SignInProps) => {
         setOpen(true)
     }
 
-    const handleSnackClose = (event?: React.SyntheticEvent, reason?:string) => {
+    const handleSnackClose = (event, reason) => {
         if(reason === 'clickaway'){
             return;
         }
@@ -80,7 +84,7 @@ export const SignIn = withRouter( (props:SignInProps) => {
     }
 
     const sign_in = async () => {
-        const response = await auth.signInWithPopup( new firebase.auth.GoogleAuthProvider());
+        const response = await signInWithPopup(auth, provider);
         if(response.user){
             handleSnackOpen()
         }

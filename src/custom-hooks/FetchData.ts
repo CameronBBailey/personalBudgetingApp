@@ -1,10 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { investment_server_calls, alerts_server_calls, balance_server_calls, expenses_server_calls } from '../api';
-
+import { useUser } from 'reactfire'
 import { useAuth } from 'reactfire'
 
 
-
+export const useToken = () => {
+    const {status, data:user} =  useUser()
+    if (status !== "loading" && user != null) {
+        return (
+            user.uid
+        )
+    } else {
+        return(
+            'loading'
+        )
+    }
+    
+}
 
 
 
@@ -59,11 +71,11 @@ export const useGetDataBalance = () => {
 }
 
 
-export const useGetDataExpenses = () => {
+export const useGetDataExpenses = (token:any) => {
+    console.log(token)
     const [expenseData, setData] = useState<any>([]);
-
     async function handleDataFetch(){
-        const result = await expenses_server_calls.get();
+        const result = await expenses_server_calls.get(token);
         setData(result)
     }
 

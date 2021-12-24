@@ -1,6 +1,7 @@
 import React from 'react'
-import { useGetDataExpenses, useGetDataBalance } from '../../custom-hooks'
+import { useGetDataExpenses, useGetDataBalance, useToken } from '../../custom-hooks'
 import { makeStyles } from '@material-ui/core';
+
 
 const useStyles = makeStyles({
     text:
@@ -11,7 +12,8 @@ const useStyles = makeStyles({
 
 
 export const HomeBudgetTable = () => {
-    let { expenseData, getData } = useGetDataExpenses();
+    let token = useToken()
+    let { expenseData, getData } = useGetDataExpenses(token);
     let sum = 0
     expenseData.forEach((element: any) => sum += Number(element.amount));
     

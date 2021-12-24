@@ -3,19 +3,18 @@ import ReactDOM from 'react-dom';
 import { Home, Calendar, SignIn, Expenses, Investments, Balance, Alerts, NavBar } from './components';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-
 import './styles.css'
-import { Provider } from 'react-redux';
-
-
-import { FirebaseAppProvider, AuthCheck } from 'reactfire'; 
-import 'firebase/auth'; 
+import { FirebaseAppProvider, useFirebaseApp, AuthProvider, AuthCheck } from 'reactfire'; 
+import { getAuth } from 'firebase/auth'; 
 import { firebaseConfig } from './firebaseConfig' 
 
-ReactDOM.render(
-  <React.StrictMode>
-    <FirebaseAppProvider firebaseConfig={firebaseConfig}>
-    <Router>
+function AppWrapper() {
+  const app = useFirebaseApp();
+  const auth = getAuth(app)
+  
+  return (
+    <AuthProvider sdk={auth}>
+      <Router>
       <NavBar></NavBar>
       <Switch>
 
@@ -49,6 +48,17 @@ ReactDOM.render(
 
       </Switch>
     </Router>
+      </AuthProvider>
+  )
+
+}
+
+ReactDOM.render(
+  <React.StrictMode>
+    <FirebaseAppProvider firebaseConfig={firebaseConfig}>
+      <AppWrapper>
+      </AppWrapper>
+    
     </FirebaseAppProvider>
   </React.StrictMode>,
   document.getElementById('root')
