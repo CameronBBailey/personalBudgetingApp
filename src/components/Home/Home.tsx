@@ -43,7 +43,9 @@ interface Props{
 
 export const Home = ( props:Props) => {
     
-    
+    let currentdate = new Date();
+    let currentmonth = currentdate.getFullYear()
+    console.log(currentmonth)
     
     // New classes variable code
     const token = useToken();

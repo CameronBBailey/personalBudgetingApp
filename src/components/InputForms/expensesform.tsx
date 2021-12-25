@@ -7,6 +7,7 @@ import { Button } from '@material-ui/core';
 import { expenses_server_calls } from '../../api';
 import { useAuth, useUser } from 'reactfire';
 import './expensesForm.css';
+import { stderr } from 'process';
 
 
 interface ExpensesState {
@@ -14,7 +15,9 @@ interface ExpensesState {
 	name: string,
 	amount: number,
 	category: string,
-    token: string
+    token: string,
+    month: number,
+    year: number
 }
 
 
@@ -25,17 +28,13 @@ export const ExpensesForm =  () => {
     const auth = useAuth()
     const [currentUser, setCurrentUser] = useState<any>()
     const {status, data:user} = useUser()
-    // useEffect(() => {
-    //     setCurrentUser(auth.currentUser)
-    // },[currentUser])
     auth.onAuthStateChanged(() =>{setCurrentUser(auth.currentUser)})
-    // if (currentUser == null) {
-    //     console.log(auth)
-    //     return <div>loading</div>
-    // } else {
+    let currentdate = new Date();
+    let currentmonth = currentdate.getMonth().toString()
+    let currentyear = currentdate.getFullYear().toString()
 
-    // const token = currentUser.uid 
-    // console.log(token)
+    const date = `${currentmonth}-${currentyear}`
+    
     
     
     
@@ -75,6 +74,14 @@ export const ExpensesForm =  () => {
                 <div className='tokenform'>
                     <label htmlFor="token"> Category</label>
                     <Input {...register('token')} name="token" value={token} />
+                </div>
+                <div className='tokenform'>
+                    <label htmlFor="month"> Category</label>
+                    <Input {...register('month')} name="month" value={currentmonth} />
+                </div>
+                <div className='tokenform'>
+                    <label htmlFor="year"> Category</label>
+                    <Input {...register('year')} name="year" value={currentyear} />
                 </div>
                 <Button variant='contained' type='submit' color='primary'>Submit</Button>
             </form>

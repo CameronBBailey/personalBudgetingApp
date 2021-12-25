@@ -24,8 +24,9 @@ app.use(bodyParser.json());
 
 /* expenses CRUD */
 
-app.get('/expenses', (req, res)=>{
-    client.query(`Select * from expenses`, (err, result)=>{
+app.get('/expenses/:token/:month/:year', (req, res)=>{
+    
+    client.query(`Select * from expenses where token = '${req.params.token}' and month = '${req.params.month}' and year = '${req.params.year}'`, (err, result)=>{
         if(!err){
             res.send(result.rows);
         }
@@ -45,8 +46,8 @@ app.get('/expenses/:token', (req, res)=>{
 
 app.post('/expenses', (req, res)=> {
     const expense = req.body;
-    let insertQuery = `insert into expenses( name, amount, category, token) 
-                       values('${expense.name}', '${expense.amount}', '${expense.category}', '${expense.token}')`
+    let insertQuery = `insert into expenses( name, amount, category, token, month, year) 
+                       values('${expense.name}', '${expense.amount}', '${expense.category}', '${expense.token}', '${expense.month}', '${expense.year}')`
 
     client.query(insertQuery, (err, result)=>{
         if(!err){

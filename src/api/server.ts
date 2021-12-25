@@ -87,6 +87,24 @@ export const expenses_server_calls = {
         return await response.json()
     },
 
+    getWithDate: async (token:any, month:string, year:string) => {
+        const response = await fetch(`http://localhost:3300/expenses/${token}/${month}/${year}`,{
+            method: 'GET',
+            mode: 'cors',
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                'Content-Type': 'application/json'/*,
+                'x-access-token': `Bearer ${token}` */
+            }
+        });
+        console.log(response)
+        if (!response.ok){
+            throw new Error('Failed to fetch data from server')
+        }
+
+        return await response.json()
+    },
+
     create: async(data: any = {}) => {
         const response = await fetch(`http://localhost:3300/expenses`,{
             method: 'POST',

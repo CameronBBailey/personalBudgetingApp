@@ -86,6 +86,23 @@ export const useGetDataExpenses = (token:any) => {
     return {expenseData, getData:handleDataFetch}
 }
 
+export const useGetDataExpensesWithDate = (token:any, month:string, year:string) => {
+    const [expenseData, setData] = useState<any>([]);
+    async function handleDataFetch(){
+        const result = await expenses_server_calls.getWithDate(token, month, year);
+        console.log(token)
+        setData(result)
+        
+    }
+
+    
+    useEffect( () => {
+        handleDataFetch();
+    }, [])
+
+    return {expenseData, getData:handleDataFetch}
+}
+
 
 
 
